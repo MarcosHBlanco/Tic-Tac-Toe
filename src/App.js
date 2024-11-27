@@ -14,15 +14,17 @@ export default function Board() {
 
 	function handleClick(i) {
 		const nextSquares = squares.slice();
-		if (xIsNext) {
-			nextSquares[i] = "X";
-			setXIsNext(false);
-		} else {
-			nextSquares[i] = "O";
-			setXIsNext(true);
+		if (!nextSquares[i]) {
+			if (xIsNext) {
+				nextSquares[i] = "X";
+			} else {
+				nextSquares[i] = "O";
+			}
+			setSquares(nextSquares);
+			setXIsNext(!xIsNext);
+			console.log(squares); //square is immutable
+			console.log(nextSquares);
 		}
-		setSquares(nextSquares);
-		console.log(nextSquares);
 	}
 
 	return (
