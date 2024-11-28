@@ -9,12 +9,11 @@ function Square({ value, onSquareClick }) {
 }
 
 function Board() {
-	const [xIsNext, setXIsNext] = useState(true); //state defining next user's turn
 	const [squares, setSquares] = useState(Array(9).fill(null));
 
 	function handleClick(i) {
 		const nextSquares = squares.slice(); //creates a copy of squares, that is going to be mutable instead of square
-		//check for square with content or a winner at all, and returns early if so
+		//check for square with value !== null or a winner at all, and returns early if so
 		if (nextSquares[i] || calculateWinner(squares)) {
 			return;
 		}
@@ -62,12 +61,17 @@ function Board() {
 }
 
 export default function Game() {
+	const [xIsNext, setXIsNext] = useState(true); //state to define which player's turn
+	const [history, setHistory] = useState([Array(9).fill(null)]);
 	return (
 		<>
 			<div id="game-container">
 				<div id="board-container">
 					<h1>Tic-Tac-Toe</h1>
 					<Board />
+				</div>
+				<div className="game-info">
+					<ol>{/*TODO*/}</ol>
 				</div>
 			</div>
 		</>
