@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 function Square({ value, onSquareClick }) {
 	return (
@@ -8,12 +8,12 @@ function Square({ value, onSquareClick }) {
 	);
 }
 
-export default function Board() {
+function Board() {
 	const [xIsNext, setXIsNext] = useState(true); //state defining next user's turn
 	const [squares, setSquares] = useState(Array(9).fill(null));
 
 	function handleClick(i) {
-		const nextSquares = squares.slice(); //creates a shallow copy of squares, that is going to be mutable instead of square
+		const nextSquares = squares.slice(); //creates a copy of squares, that is going to be mutable instead of square
 		//check for square with content or a winner at all, and returns early if so
 		if (nextSquares[i] || calculateWinner(squares)) {
 			return;
@@ -61,6 +61,19 @@ export default function Board() {
 	);
 }
 
+export default function Game() {
+	return (
+		<>
+			<div id="game-container">
+				<div id="board-container">
+					<h1>Tic-Tac-Toe</h1>
+					<Board />
+				</div>
+			</div>
+		</>
+	);
+}
+
 function calculateWinner(squares) {
 	const lines = [
 		//possible winning combinations
@@ -73,8 +86,8 @@ function calculateWinner(squares) {
 		[0, 4, 8],
 		[2, 4, 6],
 	];
+	//loops through combinations to check for winner
 	for (let i = 0; i < lines.length; i++) {
-		//loops through combinations to check for winner
 		const [a, b, c] = lines[i];
 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
 			return squares[a];
