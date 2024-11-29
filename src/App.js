@@ -56,18 +56,25 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 
 export default function Game() {
-	const [history, setHistory] = useState([Array(9).fill(null)]);
-	const [currentMove, setCurrentMove] = useState(0);
-	const xIsNext = currentMove % 2 === 0;
-	const currentSquares = history[currentMove];
+	const [history, setHistory] = useState([Array(9).fill(null)]); //Sets the start state for history as an array with 9 positions filled with null;
+	const [currentMove, setCurrentMove] = useState(0); //Creates a state to update moves according to current play;
+	const xIsNext = currentMove % 2 === 0; //Sets turn based on the curretn move;
+	const currentSquares = history[currentMove]; //Stores the last state of the history array, used to update the Board element;
+
+	//stores a copy of the last movement on history array, and updates the state of history with it
+	// and updates current move to the previous play;
 	function handlePlay(nextSquares) {
 		const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
 		setHistory(nextHistory);
 		setCurrentMove(nextHistory.length - 1);
 	}
+
+	//time travel function that allows players to revisit their movements
 	function jumpTo(nextMove) {
 		setCurrentMove(nextMove);
 	}
+
+	//creates an list of elements based on the player's moves
 	const moves = history.map((squares, move) => {
 		let description;
 		if (move > 0) {
