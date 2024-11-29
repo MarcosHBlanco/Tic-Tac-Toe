@@ -8,12 +8,13 @@ function Square({ value, onSquareClick }) {
 	);
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board() {
+	const [squares, setSquares] = useState(Array(9).fill(null));
+
 	function handleClick(i) {
 		const nextSquares = squares.slice(); //creates a copy of squares, that is going to be mutable instead of square
-
 		//check for square with value !== null or a winner at all, and returns early if so
-		if (squares[i] || calculateWinner(squares)) {
+		if (nextSquares[i] || calculateWinner(squares)) {
 			return;
 		}
 		//modifying state and taking turns
@@ -22,7 +23,10 @@ function Board({ xIsNext, squares, onPlay }) {
 		} else {
 			nextSquares[i] = "O";
 		}
-		onPlay(nextSquares);
+		setSquares(nextSquares);
+		setXIsNext(!xIsNext);
+		console.log(squares); //square is immutable
+		console.log(nextSquares);
 	}
 	const winner = calculateWinner(squares);
 	let status; //displays winner of next player's turn
@@ -58,22 +62,13 @@ function Board({ xIsNext, squares, onPlay }) {
 
 export default function Game() {
 	const [xIsNext, setXIsNext] = useState(true); //state to define which player's turn
-	const [history, setHistory] = useState([Array(9).fill(null)]); //state to update array of turns for time travel
-	const currentSquares = history[history.length - 1];
-	function handlePlay(nextSquares) {
-		setHistory([...history, nextSquares]);
-		setXIsNext(!xIsNext);
-	}
+	const [history, setHistory] = useState([Array(9).fill(null)]);
 	return (
 		<>
 			<div id="game-container">
 				<div id="board-container">
 					<h1>Tic-Tac-Toe</h1>
-					<Board
-						xIsNext={xIsNext}
-						squares={currentSquares}
-						onPlay={handlePlay}
-					/>
+					<Board />
 				</div>
 				<div className="game-info">
 					<ol>{/*TODO*/}</ol>
