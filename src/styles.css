@@ -1,16 +1,16 @@
 * {
 	box-sizing: border-box;
 }
-
 body {
-	font-family: sans-serif;
-	margin: 20px;
-	padding: 0;
+	font-family: "Patrick Hand SC", cursive;
+	font-weight: 400;
+	font-style: normal;
+	background-color: rgb(122, 172, 214);
 }
-
 h1 {
 	margin-top: 0;
-	font-size: 22px;
+	font-size: 5em;
+	color: rgb(174, 129, 92);
 }
 
 h2 {
@@ -50,25 +50,22 @@ ul {
 	box-sizing: border-box;
 }
 
-body {
-	font-family: sans-serif;
-	margin: 20px;
-	padding: 0;
-}
-
 .square {
 	background: #fff;
 	border: 1px solid #999;
 	float: left;
-	font-size: 24px;
+	font-family: "Patrick Hand SC", cursive;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 40px;
 	font-weight: bold;
 	line-height: 34px;
-	height: 34px;
+	height: 100px;
 	margin-right: -1px;
 	margin-top: -1px;
 	padding: 0;
 	text-align: center;
-	width: 34px;
+	width: 100px;
 }
 
 .board-row:after {
