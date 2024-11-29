@@ -5,7 +5,7 @@ body {
 	font-family: "Patrick Hand SC", cursive;
 	font-weight: 400;
 	font-style: normal;
-	background-color: rgb(122, 172, 214);
+	background-color: rgb(151, 193, 228);
 }
 h1 {
 	margin-top: 0;
@@ -51,21 +51,23 @@ ul {
 }
 
 .square {
-	background: #fff;
+	background: rgba(230, 201, 177, 0.8);
 	border: 1px solid #999;
 	float: left;
 	font-family: "Patrick Hand SC", cursive;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 40px;
+	font-size: 60px;
 	font-weight: bold;
 	line-height: 34px;
 	height: 100px;
 	margin-right: -1px;
 	margin-top: -1px;
 	padding: 0;
-	text-align: center;
 	width: 100px;
+}
+.square :first-child {
+	border-top: none;
 }
 
 .board-row:after {
@@ -75,7 +77,10 @@ ul {
 }
 
 .status {
-	margin-bottom: 10px;
+	color: #ff0000;
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: xx-large;
 }
 .game {
 	display: flex;
@@ -86,6 +91,15 @@ ul {
 	margin-left: 20px;
 }
 #game-container {
+	height: 700px;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+}
+#board-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }

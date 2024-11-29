@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
 	return (
@@ -33,7 +33,7 @@ function Board({ xIsNext, squares, onPlay }) {
 	return (
 		<>
 			<div>
-				<p>{status}</p>
+				<p className="status">{status}</p>
 			</div>
 			{/* game board */}
 			<div className="board-row">
